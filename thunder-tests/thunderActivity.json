@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "4071deff-2c71-4eaa-a9e1-e73eb41791bf",
+    "colId": "history",
+    "containerId": "",
+    "name": "http:localhost:8080/accounts",
+    "url": "http:localhost:8080/accounts",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-02-20T06:03:25.443Z",
+    "modified": "2023-02-20T06:03:25.443Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"owner\": \"Gang Fheng\",\n  \"currency\": \"USD\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6097be2a-4255-4678-a7b2-78aa33928ef9",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:8080/accounts",
+    "url": "http://localhost:8080/accounts",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-02-20T06:03:31.891Z",
+    "modified": "2023-02-20T06:10:11.230Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"owner\": \"\",\n  \"currency\": \"\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
