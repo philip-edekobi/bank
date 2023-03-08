@@ -4,13 +4,24 @@
     "colId": "0f80d25f-4fb8-460e-b255-eea7e55f3f80",
     "containerId": "",
     "name": "http://localhost:8080/accounts/1",
-    "url": "http://localhost:8080/accounts/1",
+    "url": "http://localhost:8080/accounts/?page_size=10&page_id=1",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-02-20T06:27:46.815Z",
-    "modified": "2023-02-20T06:27:46.815Z",
+    "modified": "2023-03-08T04:16:00.075Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "page_size",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "page_id",
+        "value": "1",
+        "isPath": false
+      }
+    ],
     "tests": []
   },
   {
@@ -18,11 +29,11 @@
     "colId": "0f80d25f-4fb8-460e-b255-eea7e55f3f80",
     "containerId": "",
     "name": "http://localhost:8080/accounts",
-    "url": "http://localhost:8080/accounts/1",
-    "method": "PATCH",
+    "url": "http://localhost:8080/accounts/2",
+    "method": "DELETE",
     "sortNum": 20000,
     "created": "2023-02-20T06:28:01.653Z",
-    "modified": "2023-03-08T01:19:39.347Z",
+    "modified": "2023-03-08T03:23:04.308Z",
     "headers": [],
     "params": [],
     "body": {
