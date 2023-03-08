@@ -1,11 +1,12 @@
 package db
 
 import (
-	"bank/util"
 	"context"
 	"database/sql"
 	"testing"
 	"time"
+
+	"github.com/philip-edekobi/bank/util"
 
 	"github.com/stretchr/testify/require"
 )

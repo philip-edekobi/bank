@@ -18,16 +18,16 @@
     "colId": "0f80d25f-4fb8-460e-b255-eea7e55f3f80",
     "containerId": "",
     "name": "http://localhost:8080/accounts",
-    "url": "http://localhost:8080/accounts",
-    "method": "POST",
+    "url": "http://localhost:8080/accounts/1",
+    "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-02-20T06:28:01.653Z",
-    "modified": "2023-02-20T06:28:01.653Z",
+    "modified": "2023-03-08T01:19:39.347Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"owner\": \"Luxury Dev\",\n  \"currency\": \"US\"\n}",
+      "raw": "{\n  \"balance\": 105\n}",
       "form": []
     },
     "tests": []

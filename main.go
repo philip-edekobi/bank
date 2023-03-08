@@ -1,11 +1,14 @@
 package main
 
 import (
-	"bank/api"
-	db "bank/db/sqlc"
-	"bank/util"
 	"database/sql"
 	"log"
+
+	"github.com/philip-edekobi/bank/util"
+
+	db "github.com/philip-edekobi/bank/db/sqlc"
+
+	"github.com/philip-edekobi/bank/api"
 
 	_ "github.com/lib/pq"
 )

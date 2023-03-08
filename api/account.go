@@ -1,9 +1,10 @@
 package api
 
 import (
-	db "bank/db/sqlc"
 	"database/sql"
 	"net/http"
+
+	db "github.com/philip-edekobi/bank/db/sqlc"
 
 	"github.com/gin-gonic/gin"
 )

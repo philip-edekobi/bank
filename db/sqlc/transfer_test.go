@@ -1,8 +1,8 @@
 package db
 
 import (
-	"bank/util"
 	"context"
+	"github.com/philip-edekobi/bank/util"
 	"testing"
 	"time"
 
