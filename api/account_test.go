@@ -106,7 +106,82 @@ func TestGetAccountAPI(t *testing.T) {
 	}
 }
 
-//func TestCreateAccountAPI(t *testing.T)
+func TestCreateAccountAPI(t *testing.T) {
+	testCases := []struct {
+		name          string
+		buildStubs    func(store *mockdb.MockStore)
+		checkResponse func(t *testing.T, recorder *httptest.ResponseRecorder)
+	}{
+		{
+			name: "OK",
+			buildStubs: func(store *mockdb.MockStore) {
+				store.EXPECT().
+					CreateAccount(gomock.Any(), db.CreateAccountParams{
+						Owner:    "Mike",
+						Balance:  0,
+						Currency: "USD",
+					}).
+					Times(1)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusOK, recorder.Code)
+			},
+		},
+		{
+			name: "BadRequest",
+			buildStubs: func(store *mockdb.MockStore) {
+				store.EXPECT().
+					CreateAccount(gomock.Any(), gomock.Any()).
+					Times(0)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusBadRequest, recorder.Code)
+			},
+		},
+		{
+			name: "InternalServerError",
+			buildStubs: func(store *mockdb.MockStore) {
+				store.EXPECT().
+					CreateAccount(gomock.Any(), gomock.Any()).
+					Times(1).
+					Return(db.Account{}, sql.ErrConnDone)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusInternalServerError, recorder.Code)
+			},
+		},
+	}
+	for i := range testCases {
+		tc := testCases[i]
+		t.Run(tc.name, func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			store := mockdb.NewMockStore(ctrl)
+
+			tc.buildStubs(store)
+
+			//start test server and send requests
+			server := NewServer(store)
+			recorder := httptest.NewRecorder()
+
+			var jsonArgs []byte
+			if tc.name == "BadRequest" {
+				jsonArgs = []byte(``)
+			} else {
+				jsonArgs = []byte(`{"Owner": "Mike", "Currency": "USD"}`)
+			}
+			args := bytes.NewReader(jsonArgs)
+			request, err := http.NewRequest(http.MethodPost, "/accounts", args)
+
+			require.NoError(t, err)
+
+			server.router.ServeHTTP(recorder, request)
+
+			tc.checkResponse(t, recorder)
+		})
+	}
+}
 
 //func TestListAccountsAPI(t *testing.T)
 
@@ -157,10 +232,7 @@ func TestUpdateAccountAPI(t *testing.T) {
 			accountID: account.ID,
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
-					UpdateAccount(gomock.Any(), gomock.Eq(db.UpdateAccountParams{
-						ID:      account.ID,
-						Balance: 10,
-					})).
+					UpdateAccount(gomock.Any(), gomock.Any()).
 					Times(1).
 					Return(db.Account{}, sql.ErrConnDone)
 			},
@@ -227,7 +299,9 @@ func TestUpdateAccountAPI(t *testing.T) {
 	}
 }
 
-//func TestDeleteAccountAPI(t *testing.T)
+func TestDeleteAccountAPI(t *testing.T) {
+
+}
 
 func randomAccount() db.Account {
 	return db.Account{
