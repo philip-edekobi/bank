@@ -42,5 +42,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "b8bfb5a3-977a-4f80-b56e-a64ffac7f1c7",
+    "colId": "0f80d25f-4fb8-460e-b255-eea7e55f3f80",
+    "containerId": "",
+    "name": "make transfer",
+    "url": "http://localhost:8080/transfers",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-12T05:44:10.477Z",
+    "modified": "2023-03-12T05:46:59.232Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"from_account_id\": 5, \n  \"to_account_id\": 6,\n  \"currency\": \"USD\",\n  \"amount\": 100\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
