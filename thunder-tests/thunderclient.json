@@ -52,12 +52,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2023-03-12T05:44:10.477Z",
-    "modified": "2023-03-12T05:59:58.467Z",
+    "modified": "2023-03-13T11:14:02.772Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"from_account_id\": 5, \n  \"to_account_id\": 6,\n  \"currency\": \"US\",\n  \"amount\": 100\n}",
+      "raw": "{\n  \"from_account_id\": 5, \n  \"to_account_id\": 6,\n  \"currency\": \"USD\",\n  \"amount\": 10\n}",
       "form": []
     },
     "tests": []
