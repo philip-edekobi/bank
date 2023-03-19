@@ -4,24 +4,18 @@
     "colId": "0f80d25f-4fb8-460e-b255-eea7e55f3f80",
     "containerId": "",
     "name": "http://localhost:8080/accounts/1",
-    "url": "http://localhost:8080/accounts/?page_size=10&page_id=1",
-    "method": "GET",
+    "url": "http://localhost:8080/accounts/",
+    "method": "POST",
     "sortNum": 10000,
     "created": "2023-02-20T06:27:46.815Z",
-    "modified": "2023-03-08T04:16:00.075Z",
+    "modified": "2023-03-19T04:08:14.603Z",
     "headers": [],
-    "params": [
-      {
-        "name": "page_size",
-        "value": "10",
-        "isPath": false
-      },
-      {
-        "name": "page_id",
-        "value": "1",
-        "isPath": false
-      }
-    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"owner\": \"zado sj\",\n  \"currency\": \"CAD\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {

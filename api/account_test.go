@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	"github.com/lib/pq"
 	mockdb "github.com/philip-edekobi/bank/db/mock"
 	db "github.com/philip-edekobi/bank/db/sqlc"
 	"github.com/philip-edekobi/bank/util"
@@ -129,6 +130,44 @@ func TestCreateAccountAPI(t *testing.T) {
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
 				requireBodyMatchAccount(t, recorder.Body, account)
+			},
+		},
+		{
+			name: "Double Accounts",
+			buildStubs: func(store *mockdb.MockStore) {
+				var err error = &pq.Error{
+					Code: "23505",
+				}
+				store.EXPECT().
+					CreateAccount(gomock.Any(), db.CreateAccountParams{
+						Owner:    "Mike",
+						Balance:  0,
+						Currency: "USD",
+					}).
+					Times(1).
+					Return(db.Account{}, err)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusForbidden, recorder.Code)
+			},
+		},
+		{
+			name: "Username Not Exist",
+			buildStubs: func(store *mockdb.MockStore) {
+				var err error = &pq.Error{
+					Code: "23503",
+				}
+				store.EXPECT().
+					CreateAccount(gomock.Any(), db.CreateAccountParams{
+						Owner:    "Mike",
+						Balance:  0,
+						Currency: "USD",
+					}).
+					Times(1).
+					Return(db.Account{}, err)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusForbidden, recorder.Code)
 			},
 		},
 		{
