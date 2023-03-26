@@ -10,7 +10,7 @@ import (
 
 const minSecretKeySize = 32
 
-// JWTMaker is a JSON web Token maker
+// JWTMaker is a JSON Web Token maker
 type JWTMaker struct {
 	secretKey string
 }
@@ -38,8 +38,8 @@ func (jm *JWTMaker) VerifyToken(token string) (*Payload, error) {
 	jwtToken, err := jwt.ParseWithClaims(token, &Payload{}, keyFunc)
 	if err != nil {
 		vErr, ok := err.(*jwt.ValidationError)
-		if ok && errors.Is(vErr, ErrExpiredToken) {
-			return nil, ErrInvalidToken
+		if ok && errors.Is(vErr.Inner, ErrExpiredToken) {
+			return nil, ErrExpiredToken
 		}
 		return nil, ErrInvalidToken
 	}
