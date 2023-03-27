@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	"github.com/philip-edekobi/bank/util"
@@ -24,7 +25,10 @@ func main() {
 	}
 
 	store := db.NewStore(conn)
-	server := api.NewServer(store)
+	server, serverErr := api.NewServer(config, store)
+	if serverErr != nil {
+		log.Fatal(fmt.Errorf("failed to start server: %w", serverErr))
+	}
 
 	err = server.Start(config.ServerAddress)
 	if err != nil {
