@@ -469,5 +469,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "782d5347-c71a-40c1-92f3-bf3a93d67d8c",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:8080/users/",
+    "url": "http://localhost:8080/users/",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-31T06:05:41.329Z",
+    "modified": "2023-03-31T06:05:41.329Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"alice\",\n  \"password\": \"secret\",\n  \"full_name\": \"Ally Robinson\",\n  \"email\": \"alicey@gmail.com\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
