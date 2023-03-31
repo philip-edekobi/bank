@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=bank
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "bank"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      # db source doesn't work
+      - DB_SOURCE=postgresql://root:secret@postgres:5432/bank?sslmode=disable
+      - GIN_MODE=release
+    depends_on:
+      postgres:
+        condition: service_healthy
